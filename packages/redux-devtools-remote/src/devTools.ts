@@ -59,10 +59,12 @@ interface SocketOptions {
   readonly port: number;
   readonly autoReconnect?: boolean;
   readonly autoReconnectOptions?: AutoReconnectOptions;
+  readonly pingTimeout?: number;
   /**
    * Use only for compatibility if ping/pong messages does not work by default
    */
   readonly protocolVersion?: AGClientSocket.ProtocolVersions;
+  readonly pingTimeoutDisabled?: boolean;
 }
 
 interface Filters {
@@ -370,7 +372,9 @@ class DevToolsEnhancer<S, A extends Action<string>> {
         port: options.port,
         hostname: options.hostname || 'localhost',
         secure: options.secure,
-        protocolVersion: options.wsProtocolVersion || 2,
+        protocolVersion: 1,
+        pingTimeout: 8*60*60*1000,
+        pingTimeoutDisabled: true,
       };
     } else this.socketOptions = defaultSocketOptions;
     

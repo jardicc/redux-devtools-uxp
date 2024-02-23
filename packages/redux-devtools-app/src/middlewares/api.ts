@@ -219,6 +219,9 @@ function connect() {
     socket = socketClusterClient.create({
       ...connection.options,
       protocolVersion: 1,
+      pingTimeoutDisabled: true,
+      pingTimeout: 8 * 60 * 60 * 1000,
+      ackTimeout: 8 * 60 * 60 * 1000,
     });
     handleConnection();
   } catch (error) {

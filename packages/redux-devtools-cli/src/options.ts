@@ -24,9 +24,11 @@ export interface Options {
   dbOptions: DbOptions;
   maxRequestBody: string;
   logHTTPRequests?: boolean;
+  pingTimeout: number;
+  pingTimeoutDisabled: boolean;
   logLevel: 0 | 1 | 3 | 2;
   wsEngine: string;
-  wsProtocolVersion: 1 | 2
+  protocolVersion: 1
 }
 
 export default function getOptions(argv: { [arg: string]: any }): Options {
@@ -63,7 +65,9 @@ export default function getOptions(argv: { [arg: string]: any }): Options {
     maxRequestBody: argv.passphrase || '16mb',
     logHTTPRequests: argv.logHTTPRequests,
     logLevel: argv.logLevel || 3,
-    wsProtocolVersion: argv.wsProtocolVersion || 2,
+    protocolVersion: 1,
+    pingTimeoutDisabled: true,
+    pingTimeout: 8*60*60*1000,
     wsEngine:
       argv.wsEngine || process.env.npm_package_remotedev_wsengine || 'ws',
   };
