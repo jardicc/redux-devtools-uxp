@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.10.0
+
+### Minor Changes
+
+- Adds `wsProtocolVersion` option
+
 ## 0.9.1
 
 ### Patch Changes

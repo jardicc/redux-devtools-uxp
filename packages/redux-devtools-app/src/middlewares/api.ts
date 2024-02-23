@@ -216,7 +216,10 @@ function connect() {
   if (process.env.NODE_ENV === 'test') return;
   const connection = store.getState().connection;
   try {
-    socket = socketClusterClient.create(connection.options);
+    socket = socketClusterClient.create({
+      ...connection.options,
+      protocolVersion: 1,
+    });
     handleConnection();
   } catch (error) {
     store.dispatch({ type: actions.CONNECT_ERROR, error: error as Error });

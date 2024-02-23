@@ -13,6 +13,7 @@ export default async function openApp(app: true | string, options: Options) {
       const port = options.port ? `--port=${options.port}` : '';
       const host = options.host ? `--host=${options.host}` : '';
       const protocol = options.protocol ? `--protocol=${options.protocol}` : '';
+      const wsProtocolVersion = options.wsProtocolVersion ? `--wsProtocolVersion=${options.wsProtocolVersion}` : '';
 
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       spawn(require('electron') as string, [
@@ -25,6 +26,7 @@ export default async function openApp(app: true | string, options: Options) {
         port,
         host,
         protocol,
+        wsProtocolVersion,
       ]);
     } catch (error) {
       /* eslint-disable no-console */

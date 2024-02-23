@@ -3,6 +3,7 @@ export const defaultSocketOptions = {
   hostname: 'localhost',
   port: 8000,
   autoReconnect: true,
+  protocolVersion: 2 as const,
   autoReconnectOptions: {
     randomness: 30000,
   },

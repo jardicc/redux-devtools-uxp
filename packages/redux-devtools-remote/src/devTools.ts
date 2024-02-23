@@ -59,6 +59,10 @@ interface SocketOptions {
   readonly port: number;
   readonly autoReconnect?: boolean;
   readonly autoReconnectOptions?: AutoReconnectOptions;
+  /**
+   * Use only for compatibility if ping/pong messages does not work by default
+   */
+  readonly protocolVersion?: AGClientSocket.ProtocolVersions;
 }
 
 interface Filters {
@@ -112,6 +116,10 @@ interface Options<S, A extends Action<string>> {
   readonly actionSanitizer?:
     | (<A extends Action<string>>(action: A, id?: number) => A)
     | undefined;
+  /**
+   * Use only for compatibility if ping/pong messages does not work by default
+   */
+  readonly wsProtocolVersion?: AGClientSocket.ProtocolVersions;
 }
 
 interface MessageToRelay {
@@ -362,8 +370,10 @@ class DevToolsEnhancer<S, A extends Action<string>> {
         port: options.port,
         hostname: options.hostname || 'localhost',
         secure: options.secure,
+        protocolVersion: options.wsProtocolVersion || 2,
       };
     } else this.socketOptions = defaultSocketOptions;
+    
 
     this.suppressConnectErrors =
       options.suppressConnectErrors !== undefined

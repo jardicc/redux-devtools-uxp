@@ -156,6 +156,7 @@ For React Native you can use [remotedev-rn-debugger](https://github.com/jhen0409
 | `shouldStartLocked`     | _Boolean_ - if specified as `true`, it will not allow any non-monitor actions to be dispatched till `lockChanges(false)` is dispatched. Default is `false`.                                                                                                                                                   |
 | `id`                    | _String_ to identify the instance when sending the history triggered by `sendOn`. You can use, for example, user id here, to know who sent the data.                                                                                                                                                          |
 | `suppressConnectErrors` | _Boolean_ - if set to `false`, all socket errors thrown while trying to connect will be printed to the console, regardless of if they've been thrown before. This is primarily for suppressing `SocketProtocolError` errors, which get repeatedly thrown when trying to make a connection. Default is `true`. |
+| `wsProtocolVersion`                    | _Number_ to override default protocol version. Possible values are `1` and `2`. Use it only for compatibility reasons with ping/pong messages. Default is `2`                                                                                                                                                          |
 
 All parameters are optional. You have to provide the `port` property to use the `hostname` or `secure` properties.
 
